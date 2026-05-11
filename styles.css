@@ -1,0 +1,805 @@
+/* Mulheres que Curam — landing */
+
+:root {
+  --bg: #f5ede0;
+  --bg-deep: #ebdfc9;
+  --paper: #faf4e8;
+  --ink: #2a2317;
+  --ink-soft: #3d3322;
+  --gold: #b08947;
+  --gold-deep: #8a6630;
+  --sage: #8a9a82;
+  --rose: #c9a392;
+  --line: rgba(42, 35, 23, 0.14);
+
+  --serif: "Cormorant Garamond", "Cormorant", "Times New Roman", serif;
+  --sans: "Jost", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+/* ───────── Typography ───────── */
+
+.serif { font-family: var(--serif); font-weight: 400; }
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin: 0 14px 3px;
+  opacity: 0.5;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(64px, 11vw, 156px); line-height: 0.94; font-weight: 500; }
+h2 { font-size: clamp(38px, 5.4vw, 72px); line-height: 1.02; }
+h3 { font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2; }
+
+p { text-wrap: pretty; }
+p.lead {
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.5;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+}
+
+em { font-style: italic; color: var(--gold-deep); }
+
+/* ───────── Layout ───────── */
+
+.container { width: min(1240px, 92vw); margin: 0 auto; }
+.narrow    { width: min(780px,  92vw); margin: 0 auto; }
+
+section { padding: clamp(80px, 11vh, 140px) 0; position: relative; }
+
+.divider {
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(to bottom, transparent, var(--gold) 50%, transparent);
+  margin: 0 auto;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+}
+
+/* ───────── Buttons ───────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 34px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  background: var(--gold-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(176, 137, 71, 0.32);
+}
+.btn .arrow { transition: transform 0.4s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.btn-lg {
+  padding: 24px 48px;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ───────── Hero ───────── */
+
+.hero {
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(176, 137, 71, 0.18), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(201, 163, 146, 0.22), transparent 60%),
+    var(--bg);
+}
+
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,0.4) 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 62%, rgba(176, 137, 71, 0.25) 1px, transparent 1.5px),
+    radial-gradient(circle at 42% 88%, rgba(255,255,255,0.3) 1px, transparent 1.5px);
+  background-size: 240px 240px, 320px 320px, 200px 200px;
+  background-position: 0 0, 80px 40px, 30px 120px;
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  animation: shimmer 12s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.35; }
+}
+
+.hero-inner {
+  position: relative;
+  width: min(1240px, 92vw);
+  margin: 0 auto;
+  padding: 140px 0 100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-style: italic;
+  font-weight: 500;
+}
+.hero h1 .accent {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 56px);
+  flex-wrap: wrap;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hero-meta > div { display: flex; align-items: center; gap: 10px; }
+.hero-meta .glyph {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 56px);
+  margin-top: 8px;
+}
+.countdown .unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.countdown .num {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  font-weight: 300;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.countdown .lbl {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.countdown .sep {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.45;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.scroll-cue::after {
+  content: "";
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: drop 2.2s ease-in-out infinite;
+}
+@keyframes drop {
+  0% { transform: scaleY(0); transform-origin: top; }
+  60% { transform: scaleY(1); transform-origin: top; }
+  61% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ───────── Sobre ───────── */
+
+.sobre { background: var(--bg); }
+.sobre .narrow { text-align: center; }
+.sobre .lead { margin: 28px 0; }
+.sobre .signature {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold-deep);
+  margin-top: 36px;
+}
+
+/* ───────── Energias ───────── */
+
+.energias {
+  background: var(--paper);
+  position: relative;
+}
+.energias .header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.energias h2 { margin-top: 14px; font-style: italic; }
+.energias h2 em { font-style: normal; color: var(--gold-deep); }
+
+.energias-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.energy {
+  padding: 56px 32px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  transition: background 0.5s ease;
+  position: relative;
+}
+.energy:last-child { border-right: none; }
+.energy:hover { background: rgba(176, 137, 71, 0.06); }
+
+.energy .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+.energy .glyph {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: grid; place-items: center;
+  font-family: var(--serif);
+  font-size: 32px;
+  color: var(--gold-deep);
+  background: radial-gradient(circle, rgba(176, 137, 71, 0.08), transparent 70%);
+  transition: all 0.6s ease;
+}
+.energy:hover .glyph {
+  background: radial-gradient(circle, rgba(176, 137, 71, 0.22), transparent 70%);
+  transform: rotate(8deg);
+}
+.energy .name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+}
+.energy .name small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-top: 6px;
+}
+.energy .desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ───────── O que vai viver ───────── */
+
+.viver {
+  background: var(--bg);
+}
+.viver .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: center;
+}
+.viver-text h2 { font-style: italic; margin: 14px 0 28px; }
+.viver-text p { color: var(--ink); font-size: 17px; font-weight: 400; }
+
+.viver-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.viver-list li {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  transition: padding 0.4s ease;
+}
+.viver-list li:hover { padding-left: 16px; }
+.viver-list li .idx {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  min-width: 28px;
+}
+.viver-list li .dot-sm {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ───────── Sobre Você ───────── */
+
+.sobre-voce {
+  background: var(--paper);
+  overflow: hidden;
+}
+.sobre-voce .container {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.portrait {
+  aspect-ratio: 4 / 5;
+  background:
+    repeating-linear-gradient(135deg, rgba(176, 137, 71, 0.06) 0 12px, rgba(176, 137, 71, 0.12) 12px 24px),
+    linear-gradient(160deg, var(--bg-deep), var(--bg));
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--gold-deep);
+}
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+  filter: saturate(0.95) contrast(1.02);
+}
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: -16px -16px 16px 16px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  opacity: 0.5;
+  z-index: -1;
+}
+.portrait-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.6;
+  padding: 0 24px;
+}
+.portrait-label strong {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 6px;
+  opacity: 1;
+  font-weight: 400;
+}
+
+.sobre-voce h2 { font-style: italic; margin: 14px 0 28px; }
+.sobre-voce .lead { margin-bottom: 24px; }
+.sobre-voce p { color: var(--ink); font-weight: 400; }
+.sobre-voce .sign-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--gold-deep);
+  margin-top: 32px;
+}
+
+/* ───────── Info prática ───────── */
+
+.info {
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.info::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(176, 137, 71, 0.18), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(201, 163, 146, 0.12), transparent 60%);
+  pointer-events: none;
+}
+.info .container { position: relative; }
+.info .eyebrow { color: var(--gold); }
+.info h2 { color: var(--paper); margin-top: 14px; font-style: italic; }
+.info .lead { color: rgba(250, 244, 232, 0.95); }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(250, 244, 232, 0.12);
+  border: 1px solid rgba(250, 244, 232, 0.12);
+  margin-top: 64px;
+}
+.info-cell {
+  background: var(--ink);
+  padding: 36px 28px;
+  text-align: center;
+}
+.info-cell .k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.info-cell .v {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+}
+.info-cell .v small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(250, 244, 232, 0.85);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+/* ───────── CTA Final ───────── */
+
+.cta {
+  background: var(--bg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(176, 137, 71, 0.16), transparent 60%);
+  pointer-events: none;
+}
+.cta .narrow { position: relative; }
+.cta h2 {
+  font-style: italic;
+  margin: 24px 0 36px;
+}
+.cta h2 em { font-style: normal; color: var(--gold-deep); }
+.cta .lead { margin-bottom: 48px; }
+.cta-foot {
+  margin-top: 36px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cta-foot strong { color: var(--gold-deep); font-weight: 500; }
+
+/* ───────── Footer ───────── */
+
+footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+footer .mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+/* ───────── Reveal on scroll ───────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+
+/* ───────── Mobile ───────── */
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .energias-grid { grid-template-columns: 1fr 1fr; }
+  .energy:nth-child(2) { border-right: none; }
+  .energy:nth-child(1), .energy:nth-child(2) { border-bottom: 1px solid var(--line); }
+  .viver .container { grid-template-columns: 1fr; gap: 48px; }
+  .sobre-voce .container { grid-template-columns: 1fr; gap: 56px; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+  .hero-meta { gap: 20px; }
+  .eyebrow::before, .eyebrow::after { width: 16px; margin: 0 8px 3px; }
+}
+
+@media (max-width: 520px) {
+  .energias-grid { grid-template-columns: 1fr; }
+  .energy { border-right: none; border-bottom: 1px solid var(--line); }
+  .energy:last-child { border-bottom: none; }
+  .info-grid { grid-template-columns: 1fr; }
+  .countdown { gap: 14px; }
+  .countdown .sep { display: none; }
+  .viver-list li { font-size: 19px; }
+}
+
+/* ───────── Cosmic mode (Cosmos / Místico paletas) ───────── */
+
+body.cosmic {
+  background:
+    url("starfield.svg") repeat,
+    url("https://cdn.esawebb.org/archives/images/publicationjpg/weic2205a.jpg") center/cover no-repeat fixed,
+    radial-gradient(ellipse 70% 50% at 18% 12%, rgba(140, 90, 180, 0.22), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 82% 88%, rgba(80, 130, 200, 0.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(176, 137, 71, 0.10), transparent 70%),
+    var(--bg);
+  background-size: 1600px 1600px, cover, auto, auto, auto, auto;
+  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+}
+
+body.cosmic::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(4, 3, 10, 0.78), rgba(4, 3, 10, 0.95) 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.cosmic::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 30% at 15% 75%, rgba(190, 130, 220, 0.16), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 85% 25%, rgba(100, 160, 220, 0.14), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: nebula-drift 28s ease-in-out infinite alternate;
+}
+@keyframes nebula-drift {
+  0%   { opacity: 0.6; transform: translate3d(0, 0, 0); }
+  100% { opacity: 1;   transform: translate3d(-2%, 1%, 0); }
+}
+
+body.cosmic section { position: relative; z-index: 1; }
+body.cosmic .hero,
+body.cosmic .sobre,
+body.cosmic .energias,
+body.cosmic .viver,
+body.cosmic .sobre-voce,
+body.cosmic .cta,
+body.cosmic footer {
+  background: transparent;
+}
+
+/* Make energies/info legible against starfield */
+body.cosmic .energias {
+  background: linear-gradient(180deg, transparent, rgba(20, 16, 28, 0.35) 12%, rgba(20, 16, 28, 0.35) 88%, transparent);
+}
+body.cosmic .energy:hover { background: rgba(176, 137, 71, 0.14); }
+
+body.cosmic .info {
+  background: rgba(10, 8, 18, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f4ecda;
+}
+body.cosmic .info h2 { color: #f4ecda; }
+body.cosmic .info .lead { color: rgba(244, 236, 218, 0.95); }
+body.cosmic .info-cell { background: rgba(10, 8, 18, 0.45); }
+body.cosmic .info-cell .v { color: #f4ecda; }
+body.cosmic .info-cell .v small { color: rgba(244, 236, 218, 0.85); }
+body.cosmic .info-grid { background: rgba(244, 236, 218, 0.16); border-color: rgba(244, 236, 218, 0.16); }
+
+body.cosmic .portrait {
+  background:
+    repeating-linear-gradient(135deg, rgba(176, 137, 71, 0.10) 0 12px, rgba(176, 137, 71, 0.18) 12px 24px),
+    linear-gradient(160deg, rgba(40, 30, 60, 0.6), rgba(20, 16, 28, 0.4));
+  border-color: rgba(240, 230, 214, 0.18);
+}
+
+/* Hero — add moon/orb */
+body.cosmic .hero-grain {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,0.7) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 78% 62%, rgba(240, 214, 138, 0.6) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 42% 88%, rgba(255,255,255,0.6) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 88% 18%, rgba(190, 160, 220, 0.5) 1px, transparent 1.6px);
+  background-size: 320px 320px, 420px 420px, 280px 280px, 360px 360px;
+  background-position: 0 0, 80px 40px, 30px 120px, 60px 80px;
+  opacity: 0.9;
+  animation: twinkle 6s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+body.cosmic .hero::before {
+  content: "";
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  width: clamp(140px, 18vw, 240px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 246, 220, 0.95), rgba(240, 214, 138, 0.6) 60%, rgba(176, 137, 71, 0) 75%),
+    radial-gradient(circle at 60% 60%, rgba(176, 137, 71, 0.25), transparent 60%);
+  box-shadow:
+    0 0 80px 20px rgba(240, 214, 138, 0.18),
+    0 0 160px 40px rgba(190, 160, 220, 0.12);
+  pointer-events: none;
+  opacity: 0.85;
+  animation: moon-glow 8s ease-in-out infinite;
+}
+@keyframes moon-glow {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 80px 20px rgba(240, 214, 138, 0.18), 0 0 160px 40px rgba(190, 160, 220, 0.12); }
+  50%      { transform: scale(1.04); box-shadow: 0 0 120px 30px rgba(240, 214, 138, 0.26), 0 0 200px 60px rgba(190, 160, 220, 0.18); }
+}
+
+body.cosmic .hero .accent,
+body.cosmic .energy:hover .glyph {
+  text-shadow: 0 0 24px rgba(240, 214, 138, 0.4);
+}
+
+body.cosmic .energy .glyph {
+  background: radial-gradient(circle, rgba(240, 214, 138, 0.18), transparent 70%);
+  box-shadow: 0 0 24px rgba(240, 214, 138, 0.15);
+}
+body.cosmic .energy:hover .glyph {
+  box-shadow: 0 0 32px rgba(240, 214, 138, 0.35);
+}
+
+/* Buttons in cosmic mode */
+body.cosmic .btn {
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+  color: #1a1320;
+  box-shadow: 0 0 32px rgba(240, 214, 138, 0.25), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+body.cosmic .btn:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  box-shadow: 0 0 48px rgba(240, 214, 138, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Strengthen divider lines in cosmic mode */
+body.cosmic .energias-grid,
+body.cosmic .viver-list li,
+body.cosmic .viver-list,
+body.cosmic footer,
+body.cosmic .energy {
+  border-color: rgba(240, 230, 214, 0.12);
+}
+
+/* Footer */
+body.cosmic footer { background: transparent; }

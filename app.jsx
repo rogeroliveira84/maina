@@ -94,6 +94,17 @@ const WHATSAPP = "https://wa.me/5511914522022?text=" + encodeURIComponent(
   "Olá! Quero garantir minha vaga no encontro Mulheres que Curam ✨"
 );
 
+const FORM_URL = "https://forms.gle/qTnJEaS5sbwzDV2D8";
+
+const GALERIA_PHOTOS = [
+  { src: null, alt: "Espaço Terra Luz — vista 1" },
+  { src: null, alt: "Espaço Terra Luz — vista 2" },
+  { src: null, alt: "Espaço Terra Luz — vista 3" },
+  { src: null, alt: "Espaço Terra Luz — vista 4" },
+  { src: null, alt: "Espaço Terra Luz — vista 5" },
+  { src: null, alt: "Espaço Terra Luz — vista 6" }
+];
+
 // ─────────────────────────────── Sections ───────────────────────────────
 
 function Hero({ showCountdown }) {
@@ -175,10 +186,26 @@ function Sobre() {
 }
 
 const ENERGIAS = [
-  { num: "I",   glyph: "☾", name: "Cassandra",  sub: "Lua · Intuição",      desc: "Ativação da intuição e da visão espiritual. O abrir dos olhos internos." },
-  { num: "II",  glyph: "✦", name: "Seiduin",    sub: "Fogo · Expansão",     desc: "Desbloqueios profundos e expansão energética. Quebra de selos antigos." },
-  { num: "III", glyph: "❀", name: "Pele",       sub: "Flor · Poder",        desc: "Transmutação, força e poder feminino. O despertar da mulher sagrada." },
-  { num: "IV",  glyph: "❋", name: "Gaia",       sub: "Terra · Integração",  desc: "Selamento, aterramento e integração. O retorno suave para a presença." }
+  {
+    num: "I", glyph: "☾", name: "Cassandra", sub: "Voz · Sabedoria",
+    desc: "O despertar da voz que um dia foi silenciada.",
+    bullets: ["a sabedoria intuitiva", "a visão espiritual", "a verdade não ouvida", "a voz que foi silenciada"]
+  },
+  {
+    num: "II", glyph: "✦", name: "Cerridwen", sub: "Caldeirão · Alquimia",
+    desc: "Deusa celta da transformação, da sabedoria e da alquimia.",
+    bullets: ["morte e renascimento", "transformação profunda", "o caldeirão sagrado", "a magia que dissolve o velho para fazer nascer o novo"]
+  },
+  {
+    num: "III", glyph: "❀", name: "Pele", sub: "Fogo · Renascimento",
+    desc: "Deusa do fogo, dos vulcões e do renascimento.",
+    bullets: ["empoderamento", "força feminina", "coragem", "verdade", "libertação daquilo que não é mais você"]
+  },
+  {
+    num: "IV", glyph: "❋", name: "Gaia", sub: "Terra · Propósito",
+    desc: "Mãe Terra — o propósito e a conexão com a verdadeira essência.",
+    bullets: ["enraizamento", "direção", "acolhimento", "conexão com a natureza", "propósito de vida"]
+  }
 ];
 
 function Energias() {
@@ -205,6 +232,13 @@ function Energias() {
                 <small>{e.sub}</small>
               </div>
               <div className="desc">{e.desc}</div>
+              {e.bullets && (
+                <ul className="energy-bullets">
+                  {e.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              )}
             </Reveal>
           ))}
         </div>
@@ -219,7 +253,8 @@ const VIVENCIAS = [
   "Liberação emocional",
   "Conexão espiritual profunda",
   "Dinâmicas em grupo",
-  "Momentos de integração e expansão"
+  "Momentos de integração e expansão",
+  "Esfera da Prosperidade"
 ];
 
 function Viver() {
@@ -325,20 +360,72 @@ function Info() {
             <div className="v">Limitadas<small>círculo pequeno</small></div>
           </Reveal>
         </div>
+
+        <Reveal delay={4}>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Rua+Uba%C3%ADra%2C+70V+-+Indian%C3%B3polis%2C+S%C3%A3o+Paulo+-+SP%2C+04517-140"
+            target="_blank"
+            rel="noopener"
+            className="info-address"
+          >
+            <span className="info-address-k">Endereço</span>
+            <span className="info-address-v">
+              Rua Ubaíra, 70V — Indianópolis · São Paulo — SP · 04517-140
+            </span>
+            <span className="info-address-cue">Ver no mapa <span className="arrow">→</span></span>
+          </a>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function CTA() {
+function Galeria() {
   return (
-    <section className="cta" data-screen-label="07 CTA">
+    <section className="galeria" data-screen-label="07 Galeria">
+      <div className="container">
+        <div className="galeria-header">
+          <Reveal><div className="eyebrow">O espaço</div></Reveal>
+          <Reveal delay={1}>
+            <h2>
+              <em>Terra Luz</em> — onde a vivência acontece.
+            </h2>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="lead" style={{ maxWidth: 560, margin: "20px auto 0" }}>
+              Um espaço acolhedor preparado para receber o seu retorno.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="galeria-grid">
+          {GALERIA_PHOTOS.map((photo, i) => (
+            <Reveal key={i} delay={Math.min(i + 1, 4)} className="galeria-cell">
+              {photo.src ? (
+                <img src={photo.src} alt={photo.alt} loading="lazy" />
+              ) : (
+                <div className="galeria-placeholder" aria-label={photo.alt}>
+                  <span className="galeria-ph-glyph">❋</span>
+                  <span className="galeria-ph-label">foto {String(i + 1).padStart(2, "0")}</span>
+                </div>
+              )}
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Inscricao() {
+  return (
+    <section className="cta inscricao" data-screen-label="08 Inscricao">
       <div className="narrow">
-        <Reveal><div className="eyebrow">O chamado</div></Reveal>
+        <Reveal><div className="eyebrow">Inscrição</div></Reveal>
         <Reveal delay={1}>
           <h2>
-            Se você sente esse <em>chamado</em>,<br/>
-            esse encontro é para você.
+            O chamado das mulheres<br/>
+            que <em>se curam</em>.
           </h2>
         </Reveal>
         <Reveal delay={2}>
@@ -348,14 +435,17 @@ function CTA() {
           </p>
         </Reveal>
         <Reveal delay={3}>
-          <a href={WHATSAPP} className="btn btn-lg" target="_blank" rel="noopener">
-            Quero garantir minha vaga
+          <a href={FORM_URL} className="btn btn-lg" target="_blank" rel="noopener">
+            Quero me inscrever
             <span className="arrow">→</span>
           </a>
         </Reveal>
         <Reveal delay={4}>
           <div className="cta-foot">
-            Inscrição pelo <strong>WhatsApp</strong> · Vagas limitadas
+            Inscrição pelo <strong>formulário</strong> · Vagas limitadas ·{" "}
+            <a href={WHATSAPP} target="_blank" rel="noopener" className="cta-foot-link">
+              dúvidas pelo WhatsApp
+            </a>
           </div>
         </Reveal>
       </div>
@@ -407,7 +497,8 @@ function App() {
       <Viver />
       <SobreVoce />
       <Info />
-      <CTA />
+      <Galeria />
+      <Inscricao />
       <Footer />
 
       <TweaksPanel title="Tweaks">

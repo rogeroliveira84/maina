@@ -373,6 +373,36 @@ section { padding: clamp(80px, 11vh, 140px) 0; position: relative; }
   line-height: 1.6;
 }
 
+.energy-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  width: 100%;
+  text-align: left;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+}
+.energy-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.energy-bullets li::before {
+  content: "·";
+  position: absolute;
+  left: 4px;
+  top: -3px;
+  color: var(--gold);
+  font-size: 22px;
+  line-height: 1;
+}
+
 /* ───────── O que vai viver ───────── */
 
 .viver {
@@ -556,6 +586,121 @@ section { padding: clamp(80px, 11vh, 140px) 0; position: relative; }
   margin-top: 6px;
 }
 
+.info-address {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  margin-top: 24px;
+  padding: 26px 32px;
+  border: 1px solid rgba(250, 244, 232, 0.12);
+  background: rgba(250, 244, 232, 0.04);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+.info-address:hover {
+  background: rgba(176, 137, 71, 0.10);
+  border-color: rgba(240, 214, 138, 0.35);
+}
+.info-address-k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.info-address-v {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-style: italic;
+  color: var(--paper);
+}
+.info-address-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.info-address-cue .arrow { transition: transform 0.4s ease; }
+.info-address:hover .info-address-cue .arrow { transform: translateX(4px); }
+
+/* ───────── Galeria do espaço ───────── */
+
+.galeria {
+  background: var(--paper);
+  position: relative;
+}
+.galeria-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.galeria-header h2 {
+  margin-top: 14px;
+  font-style: italic;
+}
+.galeria-header h2 em {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.galeria-cell {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg-deep);
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.galeria-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(42, 35, 23, 0.16);
+}
+.galeria-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.95) contrast(1.02);
+}
+.galeria-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  grid-auto-flow: row;
+  background:
+    repeating-linear-gradient(135deg, rgba(176, 137, 71, 0.06) 0 12px, rgba(176, 137, 71, 0.12) 12px 24px),
+    linear-gradient(160deg, var(--bg-deep), var(--bg));
+  color: var(--gold-deep);
+}
+.galeria-ph-glyph {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+.galeria-ph-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  opacity: 0.7;
+}
+
 /* ───────── CTA Final ───────── */
 
 .cta {
@@ -588,6 +733,13 @@ section { padding: clamp(80px, 11vh, 140px) 0; position: relative; }
   color: var(--ink);
 }
 .cta-foot strong { color: var(--gold-deep); font-weight: 500; }
+.cta-foot-link {
+  color: var(--gold-deep);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 0.4s ease;
+}
+.cta-foot-link:hover { opacity: 0.7; }
 
 /* ───────── Footer ───────── */
 
@@ -637,6 +789,14 @@ footer .mark {
   .viver .container { grid-template-columns: 1fr; gap: 48px; }
   .sobre-voce .container { grid-template-columns: 1fr; gap: 56px; }
   .info-grid { grid-template-columns: 1fr 1fr; }
+  .info-address {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+    padding: 22px 24px;
+  }
+  .info-address-cue { justify-self: center; }
+  .galeria-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-meta { gap: 20px; }
   .eyebrow::before, .eyebrow::after { width: 16px; margin: 0 8px 3px; }
 }
@@ -646,9 +806,12 @@ footer .mark {
   .energy { border-right: none; border-bottom: 1px solid var(--line); }
   .energy:last-child { border-bottom: none; }
   .info-grid { grid-template-columns: 1fr; }
+  .galeria-grid { grid-template-columns: 1fr; gap: 12px; }
+  .galeria-cell { aspect-ratio: 5 / 4; }
   .countdown { gap: 14px; }
   .countdown .sep { display: none; }
   .viver-list li { font-size: 19px; }
+  .energy-bullets li { font-size: 14px; }
 }
 
 /* ───────── Cosmic mode (Cosmos / Místico paletas) ───────── */
@@ -697,9 +860,24 @@ body.cosmic .sobre,
 body.cosmic .energias,
 body.cosmic .viver,
 body.cosmic .sobre-voce,
+body.cosmic .galeria,
 body.cosmic .cta,
 body.cosmic footer {
   background: transparent;
+}
+
+body.cosmic .galeria-cell {
+  border-color: rgba(240, 230, 214, 0.16);
+  background: rgba(10, 8, 18, 0.4);
+}
+body.cosmic .galeria-placeholder {
+  background:
+    repeating-linear-gradient(135deg, rgba(240, 214, 138, 0.06) 0 12px, rgba(240, 214, 138, 0.12) 12px 24px),
+    linear-gradient(160deg, rgba(40, 30, 60, 0.6), rgba(20, 16, 28, 0.4));
+  color: var(--gold-deep);
+}
+body.cosmic .energy-bullets {
+  border-color: rgba(240, 230, 214, 0.16);
 }
 
 /* Make energies/info legible against starfield */

@@ -43,7 +43,7 @@ function useCountdown(targetISO) {
 }
 
 function Countdown() {
-  const { days, hours, mins, secs } = useCountdown("2026-06-06T09:00:00-03:00");
+  const { days, hours, mins, secs } = useCountdown("2026-06-13T09:00:00-03:00");
   const pad = (n) => String(n).padStart(2, "0");
   return (
     <div className="countdown">
@@ -102,7 +102,7 @@ function Hero({ showCountdown }) {
       <div className="hero-grain" />
       <div className="hero-inner">
         <Reveal>
-          <div className="eyebrow">Encontro Holístico · 06 de Junho</div>
+          <div className="eyebrow">Encontro Holístico · 13 de Junho</div>
         </Reveal>
 
         <Reveal delay={1}>
@@ -120,7 +120,7 @@ function Hero({ showCountdown }) {
 
         <Reveal delay={3}>
           <div className="hero-meta">
-            <div><span className="glyph">✦</span> 06 . 06 . 2026</div>
+            <div><span className="glyph">✦</span> 13 . 06 . 2026</div>
             <div><span className="glyph">◐</span> 09h às 16h</div>
             <div><span className="glyph">❋</span> Terra Luz</div>
           </div>
@@ -310,7 +310,7 @@ function Info() {
         <div className="info-grid">
           <Reveal delay={1} className="info-cell">
             <div className="k">Data</div>
-            <div className="v">06 . 06<small>sábado</small></div>
+            <div className="v">13 . 06<small>sábado</small></div>
           </Reveal>
           <Reveal delay={2} className="info-cell">
             <div className="k">Horário</div>
@@ -367,7 +367,7 @@ function Footer() {
   return (
     <footer>
       <div className="mark">Mulheres que Curam</div>
-      <div>06 . 06 . 2026 · Terra Luz</div>
+      <div>13 . 06 . 2026 · Terra Luz</div>
     </footer>
   );
 }

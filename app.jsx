@@ -8,9 +8,9 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 const PALETTES = {
-  terroso:  { bg: "#f5ede0", bgDeep: "#ebdfc9", paper: "#faf4e8", ink: "#2a2317", inkSoft: "#3d3322", gold: "#b08947", goldDeep: "#8a6630", rose: "#c9a392", line: "rgba(42,35,23,0.14)" },
-  rose:     { bg: "#f7eee8", bgDeep: "#ecdfd5", paper: "#fbf3ed", ink: "#3a241c", inkSoft: "#4a2f25", gold: "#c9956f", goldDeep: "#a36f4a", rose: "#d4a59a", line: "rgba(58,36,28,0.14)" },
-  sage:     { bg: "#eef0e8", bgDeep: "#dde2d2", paper: "#f5f6ee", ink: "#1f2a1f", inkSoft: "#2c3a2b", gold: "#7a8a72", goldDeep: "#4d5e44", rose: "#b8a589", line: "rgba(31,42,31,0.14)" },
+  terroso:  { bg: "#f5ede0", bgDeep: "#ebdfc9", paper: "#faf4e8", ink: "#2a2317", inkSoft: "#3d3322", gold: "#b08947", goldDeep: "#6b4a1c", rose: "#c9a392", line: "rgba(42,35,23,0.14)" },
+  rose:     { bg: "#f7eee8", bgDeep: "#ecdfd5", paper: "#fbf3ed", ink: "#3a241c", inkSoft: "#4a2f25", gold: "#c9956f", goldDeep: "#7a4828", rose: "#d4a59a", line: "rgba(58,36,28,0.14)" },
+  sage:     { bg: "#eef0e8", bgDeep: "#dde2d2", paper: "#f5f6ee", ink: "#1f2a1f", inkSoft: "#2c3a2b", gold: "#92a58a", goldDeep: "#36482e", rose: "#b8a589", line: "rgba(31,42,31,0.14)" },
   mistico:  { bg: "#1a1424", bgDeep: "#0f0b18", paper: "#221a2c", ink: "#f4ead8", inkSoft: "#d8c8b0", gold: "#e2c478", goldDeep: "#f0d68a", rose: "#c98aa8", line: "rgba(244,234,216,0.16)" },
   cosmos:   { bg: "#0b0a18", bgDeep: "#06050f", paper: "#16142a", ink: "#f4ecda", inkSoft: "#d6c8aa", gold: "#f0d68a", goldDeep: "#ffe9a8", rose: "#be82dc", line: "rgba(244,236,218,0.16)" }
 };
@@ -97,12 +97,12 @@ const WHATSAPP = "https://wa.me/5511914522022?text=" + encodeURIComponent(
 const FORM_URL = "https://forms.gle/qTnJEaS5sbwzDV2D8";
 
 const GALERIA_PHOTOS = [
-  { src: null, alt: "Espaço Terra Luz — vista 1" },
-  { src: null, alt: "Espaço Terra Luz — vista 2" },
-  { src: null, alt: "Espaço Terra Luz — vista 3" },
-  { src: null, alt: "Espaço Terra Luz — vista 4" },
-  { src: null, alt: "Espaço Terra Luz — vista 5" },
-  { src: null, alt: "Espaço Terra Luz — vista 6" }
+  { src: "images/local1.jpeg", alt: "Espaço Terra Luz — vista 1" },
+  { src: "images/local2.jpeg", alt: "Espaço Terra Luz — vista 2" },
+  { src: "images/local3.jpeg", alt: "Espaço Terra Luz — vista 3" },
+  { src: "images/local4.jpeg", alt: "Espaço Terra Luz — vista 4" },
+  { src: "images/local5.jpeg", alt: "Espaço Terra Luz — vista 5" },
+  { src: "images/local6.jpeg", alt: "Espaço Terra Luz — vista 6" }
 ];
 
 // ─────────────────────────────── Sections ───────────────────────────────
@@ -208,6 +208,22 @@ const ENERGIAS = [
   }
 ];
 
+function KeyVisual() {
+  return (
+    <section className="key-visual" data-screen-label="02b KeyVisual" aria-label="O chamado das mulheres que se curam">
+      <Reveal>
+        <figure className="key-visual-figure">
+          <img
+            src="images/hero.jpeg"
+            alt="As deusas e o chamado das mulheres que se curam"
+            loading="lazy"
+          />
+        </figure>
+      </Reveal>
+    </section>
+  );
+}
+
 function Energias() {
   return (
     <section className="energias" data-screen-label="03 Energias">
@@ -298,7 +314,7 @@ function SobreVoce() {
         <Reveal>
           <div className="portrait">
             <img
-              src="adriana1.jpeg"
+              src="images/adriana1.jpeg"
               alt="Adriana Resende, terapeuta holística, sentada com tigela tibetana"
               loading="lazy"
             />
@@ -493,6 +509,7 @@ function App() {
     <>
       <Hero showCountdown={t.showCountdown} />
       <Sobre />
+      <KeyVisual />
       <Energias />
       <Viver />
       <SobreVoce />

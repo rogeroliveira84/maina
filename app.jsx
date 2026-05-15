@@ -346,6 +346,38 @@ function SobreVoce() {
   );
 }
 
+function Convite() {
+  return (
+    <section className="convite" data-screen-label="05b Convite">
+      <div className="narrow convite-header">
+        <Reveal><div className="eyebrow">Um convite em movimento</div></Reveal>
+        <Reveal delay={1}>
+          <h2>Ouça o <em>chamado</em>.</h2>
+        </Reveal>
+        <Reveal delay={2}>
+          <p className="lead">
+            Um recado em primeira mão — para quem sente o sopro
+            antes de entender as palavras.
+          </p>
+        </Reveal>
+      </div>
+      <Reveal delay={3}>
+        <figure className="convite-figure">
+          <div className="convite-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/tnERvxpJNRU?rel=0&modestbranding=1"
+              title="Convite — Mulheres que Curam"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </figure>
+      </Reveal>
+    </section>
+  );
+}
+
 function Info() {
   return (
     <section className="info" data-screen-label="06 Info">
@@ -513,6 +545,7 @@ function App() {
       <Energias />
       <Viver />
       <SobreVoce />
+      <Convite />
       <Info />
       <Galeria />
       <Inscricao />
